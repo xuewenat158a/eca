@@ -145,7 +145,7 @@ y_pred = pipe.predict(X_test)
 metrics = []
 for i, col in enumerate(target_cols):
     r2 = r2_score(y_test.iloc[:, i], y_pred[:, i])
-    rmse = mean_squared_error(y_test.iloc[:, i], y_pred[:, i], squared=False)
+    rmse = np.sqrt(mean_squared_error(y_test.iloc[:, i], y_pred[:, i]))
     metrics.append({"target": col, "R2": r2, "RMSE": rmse})
 metrics_df = pd.DataFrame(metrics).sort_values("target").reset_index(drop=True)
 
